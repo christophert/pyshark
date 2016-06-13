@@ -368,7 +368,7 @@ class Capture(object):
             params += ['-o', 'wlan.enable_decryption:TRUE', '-o', 'uat:80211_keys:"' + self.encryption[1] + '","' +
                                                                   self.encryption[0] + '"']
         if self.sslkey_list:
-            params += ['-o', 'ssl.keys_list:' + self.sslkey_list]
+		params += ['-o', 'ssl.desegment_ssl_records:TRUE', '-o', 'ssl.desegment_ssl_application_data:TRUE', '-o', 'tcp.desegment_tcp_streams:TRUE', '-o', 'ssl.keys_list:' + self.sslkey_list]
         if self.override_prefs:
             for preference_name, preference_value in self.override_prefs.items():
                 if all(self.encryption) and preference_name in ('wlan.enable_decryption', 'uat:80211_keys'):
